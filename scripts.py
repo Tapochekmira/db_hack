@@ -25,7 +25,7 @@ def fix_marks(schoolkid):
     if customer:
         bad_marks = Mark.objects.filter(schoolkid=customer, points__in=[1, 2, 3])
         for mark in bad_marks:
-            mark.points = 5
+            mark.points = choice([4, 5])
             mark.save()
 
 
@@ -52,7 +52,7 @@ def create_commendation(schoolkid, subject):
         group_letter='А',
         subject__title=subject
     )
-    lesson = lessons[lessons.count() // 2]
+    lesson = choice(lessons)
     customer = find_schoolkid(schoolkid)
     if customer:
         Commendation.objects.create(
