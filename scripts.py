@@ -36,7 +36,7 @@ def remove_chastisements(schoolkid_name):
         chastisements.delete()
 
 
-def create_commendation(schoolkid_name, subject):
+def create_commendation(schoolkid_name, subject, year_of_study, group_letter):
     commendations = ['Молодец!', 'Отлично!', 'Хорошо!', 'Гораздо лучше, чем я ожидал!', 'Ты меня приятно удивил!',
                      'Великолепно!', 'Прекрасно!', 'Ты меня очень обрадовал!', 'Именно этого я давно ждал от тебя!',
                      'Сказано здорово – просто и ясно!', 'Ты, как всегда, точен!', 'Очень хороший ответ!',
@@ -48,8 +48,8 @@ def create_commendation(schoolkid_name, subject):
                      'Теперь у тебя точно все получится!']
     commendation = choice(commendations)
     lessons = Lesson.objects.filter(
-        year_of_study=6,
-        group_letter='А',
+        year_of_study=year_of_study,
+        group_letter=group_letter,
         subject__title=subject
     )
     lesson = choice(lessons)
