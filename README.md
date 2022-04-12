@@ -19,7 +19,7 @@ fix_marks('Фролов Фрола Фролович')
 ```
 remove_chastisements('Фролов Фрола Фролович')
 ```
-- `create_commendation(schoolkid, subject, year_of_study, group_letter)` - функция принимает ФИО ученика, название предмета, год обучение и букву класса, в виде строк. 
+- `create_commendation(schoolkid, subject, year_of_study, group_letter)` - функция принимает ФИО ученика, название предмета, год обучение и букву класса. 
 Добавляет случайный хороший коммент от преподавателя на случайном из прошедших уроков.
 ```
 create_commendation('Фролов Фрола Фролович', 'Музыка', 3, 'A')
