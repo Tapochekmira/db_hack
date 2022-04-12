@@ -32,8 +32,8 @@ def fix_marks(schoolkid_name):
 def remove_chastisements(schoolkid_name):
     customer = find_schoolkid(schoolkid_name)
     if customer:
-        chastisement = Chastisement.objects.filter(schoolkid=customer)
-        chastisement.delete()
+        chastisements = Chastisement.objects.filter(schoolkid=customer)
+        chastisements.delete()
 
 
 def create_commendation(schoolkid_name, subject):
