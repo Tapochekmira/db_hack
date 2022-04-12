@@ -11,17 +11,17 @@ from datacenter.models import (
 )
 
 
-def find_schoolkid(schoolkid):
+def find_schoolkid(schoolkid_name):
     try:
-        return Schoolkid.objects.get(full_name__contains=schoolkid)
+        return Schoolkid.objects.get(full_name__contains=schoolkid_name)
     except ObjectDoesNotExist:
         print('Нет такого ученика')
     except MultipleObjectsReturned:
         print('Таких учеников несколько')
 
 
-def fix_marks(schoolkid):
-    customer = find_schoolkid(schoolkid)
+def fix_marks(schoolkid_name):
+    customer = find_schoolkid(schoolkid_name)
     if customer:
         bad_marks = Mark.objects.filter(schoolkid=customer, points__in=[1, 2, 3])
         for mark in bad_marks:
@@ -29,14 +29,14 @@ def fix_marks(schoolkid):
             mark.save()
 
 
-def remove_chastisements(schoolkid):
-    customer = find_schoolkid(schoolkid)
+def remove_chastisements(schoolkid_name):
+    customer = find_schoolkid(schoolkid_name)
     if customer:
         chastisement = Chastisement.objects.filter(schoolkid=customer)
         chastisement.delete()
 
 
-def create_commendation(schoolkid, subject):
+def create_commendation(schoolkid_name, subject):
     commendations = ['Молодец!', 'Отлично!', 'Хорошо!', 'Гораздо лучше, чем я ожидал!', 'Ты меня приятно удивил!',
                      'Великолепно!', 'Прекрасно!', 'Ты меня очень обрадовал!', 'Именно этого я давно ждал от тебя!',
                      'Сказано здорово – просто и ясно!', 'Ты, как всегда, точен!', 'Очень хороший ответ!',
@@ -53,7 +53,7 @@ def create_commendation(schoolkid, subject):
         subject__title=subject
     )
     lesson = choice(lessons)
-    customer = find_schoolkid(schoolkid)
+    customer = find_schoolkid(schoolkid_name)
     if customer:
         Commendation.objects.create(
             text=commendation,
